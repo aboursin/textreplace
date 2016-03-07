@@ -11,12 +11,14 @@ Run `java -jar textreplace-jar-with-dependencies.jar` with following options
  -i (--input) INPUT               : input file
  -o (--output) OUTPUT             : output file (default: output.txt)
  -q (--quote) C                   : quote character (default: ")
- -r (--replacements) REPLACEMENTS : replacement file
+ -r (--replacements) REPLACEMENTS : replacements file
  -s (--separator) C               : separator character (default: ,)
 ```
 
 ## Example
-Here is a example for replacing text from a SSA formated text to an SRT formated text.
+Here is a simple example for replacing text from a SSA (Sub Station Alpha) formated text to an SRT (SubRip) formated text. 
+
+*Note : It's possible to go further with replacements for a whole transformation of an SSA file into an SRT file !*
 
 Input file :
 ```
@@ -34,7 +36,7 @@ I am not amused?
 {\pos(255.255)}I am not amused.
 ```
 
-Replacements file (findwhat, replacewith, casesensitive & regex columns are mandatory) :
+Replacements file (findwhat, replacewith, casesensitive & regex columns are mandatory in this order) :
 ```
 findwhat;replacewith;casesensitive;regex;comment
 \{\\b.+?\}(.+?)\{\\b0\};<b>$1</b>;false;true;Replace bold tag
