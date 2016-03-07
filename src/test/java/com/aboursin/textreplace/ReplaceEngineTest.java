@@ -109,4 +109,16 @@ public class ReplaceEngineTest extends TestCase {
 		assertEquals("Foo foo xFoo xfoo Foox foox [Foo] [foo] .*.", engine.applyRule(source, new ReplaceRule("x(\\w*)x", "[$1]", true, true)));
 	}
 	
+	/**
+	 * Text replacements with an advanced regular expression.
+	 */
+	@Test
+	public void test_apply_complex(){
+		
+		ReplaceEngine engine = new ReplaceEngine();
+		
+		String source = "I am {\b1}not{\b0} amused.";
+		assertEquals("I am <b>not</b> amused.", engine.applyRule(source, new ReplaceRule("\\{\\\b.+?\\}(.+?)\\{\\\b0\\}", "\\<b\\>$1\\</b\\>", false, true)));
+	}
+	
 }

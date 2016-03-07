@@ -141,5 +141,27 @@ public class ReplaceRuleRepositoryTest extends TestCase {
 		assertFalse(rule2.getCasesensitive());
 		assertFalse(rule2.getRegex());
 	}
+	
+	/**
+	 * Test with a file containing advanced regular expressions.
+	 */
+	@Test
+	public void test_findAll_complex(){
+		
+		URL url = Thread.currentThread().getContextClassLoader().getResource("replacerule/repository/replacements.txt");
+		File csv = new File(url.getPath());
+		
+		char separator = ';';
+		char quote = '"';
+		char escape = '¥';
+		
+		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv, separator, quote, escape);
+		
+		List<ReplaceRule> rules = repository.findAll();
+		
+		for (ReplaceRule rule : rules) {
+			System.out.println(rule);
+		}
+	}
 
 }

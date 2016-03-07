@@ -1,0 +1,11 @@
+findwhat;replacewith;casesensitive;regex;comment
+\\n;"
+";false;true;Line break
+\{\\b.+?\}(.+?)\{\\b0\};\<b\>\1\</b\>;false;true;Bold
+\{\\i.+?\}(.+?)\{\\i0\};\<i\>\1\</i\>;false;true;Italic
+\{\\u.+?\}(.+?)\{\\u0\};\<u\>\1\</u\>;false;true;Underline
+  ; ;false;false;Clean double spaces
+,(\\w);, \1;false;true;Space after comma
+\\.(\\w);\\. \U\1\E;false;true;Space after dot
+(\\w)?;\1 ?;false;true;Space before question mark
+(\\w)!;\1 !;false;true;Space before exclamation mark
