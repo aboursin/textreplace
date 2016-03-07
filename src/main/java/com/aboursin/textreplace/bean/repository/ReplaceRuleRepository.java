@@ -11,26 +11,58 @@ import com.aboursin.textreplace.bean.ReplaceRule;
  * @author angelo.boursin
  */
 public class ReplaceRuleRepository extends CsvRepository<ReplaceRule> {
-
-	private final File csv;
-	private final static String DEFAULT_FILENAME = "replacerules.csv";
+	
+	private File file;
+	private char separator;
+	private char quote;
+	private char escape;
 	
 	public ReplaceRuleRepository() {
 		super(ReplaceRule.class);
-		this.csv = new File(DEFAULT_FILENAME);
 	}
 	
-	public ReplaceRuleRepository(final File csv) {
+	public ReplaceRuleRepository(final File file, char separator, char quote, char escape) {
 		super(ReplaceRule.class);
-		this.csv = csv;
+		this.file = file;
+		this.separator = separator;
+		this.quote = quote;
+		this.escape = escape;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected File getFile() {
-		return csv;
+	public File getFile() {
+		return file;
 	}
 	
+	public void setFile(File file){
+		this.file = file;
+	}
+
+	@Override
+	public char getSeparator() {
+		return separator;
+	}
+	
+	public void setSeparator(char separator){
+		this.separator = separator;
+	}
+
+	@Override
+	public char getQuote() {
+		return quote;
+	}
+	
+	public void setQuote(char quote){
+		this.quote = quote;
+	}
+
+	@Override
+	public char getEscape() {
+		return escape;
+	}
+	
+	public void escape(char escape){
+		this.escape = escape;
+	}
+
 }

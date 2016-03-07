@@ -9,6 +9,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import com.aboursin.textreplace.bean.ReplaceRule;
+import com.aboursin.textreplace.bean.repository.CsvRepository;
 import com.aboursin.textreplace.bean.repository.ReplaceRuleRepository;
 
 /**
@@ -24,7 +25,8 @@ public class ReplaceRuleRepositoryTest extends TestCase {
 	 */
 	@Test
 	public void test_findAll_nullfile(){
-		ReplaceRuleRepository repository = new ReplaceRuleRepository(null);
+		ReplaceRuleRepository repository = new ReplaceRuleRepository(null, CsvRepository.DEFAULT_SEPARATOR, 
+				CsvRepository.DEFAULT_QUOTE_CHARACTER, CsvRepository.DEFAULT_ESCAPE_CHARACTER);
 		List<ReplaceRule> rules = repository.findAll();
 		assertTrue(rules.isEmpty());
 	}
@@ -35,7 +37,10 @@ public class ReplaceRuleRepositoryTest extends TestCase {
 	 */
 	@Test
 	public void test_findAll_nofile(){
-		ReplaceRuleRepository repository = new ReplaceRuleRepository(new File("replacerule/repository/zhjcxhiwyfc"));
+		File csv = new File("replacerule/repository/zhjcxhiwyfc");
+		
+		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv, 
+				CsvRepository.DEFAULT_SEPARATOR, CsvRepository.DEFAULT_QUOTE_CHARACTER, CsvRepository.DEFAULT_ESCAPE_CHARACTER);
 		List<ReplaceRule> rules = repository.findAll();
 		assertTrue(rules.isEmpty());
 	}
@@ -50,7 +55,8 @@ public class ReplaceRuleRepositoryTest extends TestCase {
 		URL url = Thread.currentThread().getContextClassLoader().getResource("replacerule/repository/test.csv");
 		File csv = new File(url.getPath());
 		
-		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv);
+		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv, CsvRepository.DEFAULT_SEPARATOR, 
+				CsvRepository.DEFAULT_QUOTE_CHARACTER, CsvRepository.DEFAULT_ESCAPE_CHARACTER);
 		
 		List<ReplaceRule> rules = repository.findAll();
 		
@@ -68,7 +74,8 @@ public class ReplaceRuleRepositoryTest extends TestCase {
 		URL url = Thread.currentThread().getContextClassLoader().getResource("replacerule/repository/test0.csv");
 		File csv = new File(url.getPath());
 		
-		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv);
+		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv, CsvRepository.DEFAULT_SEPARATOR, 
+				CsvRepository.DEFAULT_QUOTE_CHARACTER, CsvRepository.DEFAULT_ESCAPE_CHARACTER);
 		
 		List<ReplaceRule> rules = repository.findAll();
 		
@@ -86,7 +93,8 @@ public class ReplaceRuleRepositoryTest extends TestCase {
 		URL url = Thread.currentThread().getContextClassLoader().getResource("replacerule/repository/test1.csv");
 		File csv = new File(url.getPath());
 		
-		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv);
+		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv, CsvRepository.DEFAULT_SEPARATOR, 
+				CsvRepository.DEFAULT_QUOTE_CHARACTER, CsvRepository.DEFAULT_ESCAPE_CHARACTER);
 		
 		List<ReplaceRule> rules = repository.findAll();
 		
@@ -111,7 +119,8 @@ public class ReplaceRuleRepositoryTest extends TestCase {
 		URL url = Thread.currentThread().getContextClassLoader().getResource("replacerule/repository/test2.csv");
 		File csv = new File(url.getPath());
 		
-		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv);
+		ReplaceRuleRepository repository = new ReplaceRuleRepository(csv, CsvRepository.DEFAULT_SEPARATOR, 
+				CsvRepository.DEFAULT_QUOTE_CHARACTER, CsvRepository.DEFAULT_ESCAPE_CHARACTER);
 		
 		List<ReplaceRule> rules = repository.findAll();
 		

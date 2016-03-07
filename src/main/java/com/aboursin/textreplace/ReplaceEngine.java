@@ -13,12 +13,12 @@ import com.aboursin.textreplace.bean.ReplaceRule;
 public class ReplaceEngine {
 
 	/**
-	 * Make replacements into a source text using a replacement rule.
-	 * @param source Source text
+	 * Make replacements into an input text using a replacement rule.
+	 * @param input Input text
 	 * @param rule {@link ReplaceRule} to apply
 	 * @return New text
 	 */
-	public String applyRule(final String source, final ReplaceRule rule){
+	public String applyRule(final String input, final ReplaceRule rule){
 		
 		String findwhat = rule.getFindwhat();
 		String replacewith = rule.getReplacewith();
@@ -37,18 +37,18 @@ public class ReplaceEngine {
 		}
 
 		// Replace all
-		return Pattern.compile(findwhat, flag).matcher(source).replaceAll(replacewith);
+		return Pattern.compile(findwhat, flag).matcher(input).replaceAll(replacewith);
 	}
 	
 	/**
-	 * Make replacements into a source text using a list of replacement rule.
-	 * @param source Source text
+	 * Make replacements into an input text using a list of replacement rule.
+	 * @param input Input text
 	 * @param rules List of {@link ReplaceRule} to apply
 	 * @return New text
 	 */
-	public String applyRules(final String source, final List<ReplaceRule> rules){
+	public String applyRules(final String input, final List<ReplaceRule> rules){
 		
-		String result = source;
+		String result = input;
 		
 		for (ReplaceRule rule : rules) {
 			result = applyRule(result, rule);

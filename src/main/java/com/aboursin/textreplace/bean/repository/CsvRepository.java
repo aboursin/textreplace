@@ -19,6 +19,10 @@ public abstract class CsvRepository<T> {
 	
 	private Class<T> type;
 	
+	public static final char DEFAULT_SEPARATOR = ',';
+	public static final char DEFAULT_QUOTE_CHARACTER = '"';
+	public static final char DEFAULT_ESCAPE_CHARACTER = '\\';
+
 	public CsvRepository(Class<T> type){
 		this.type = type;
 	}
@@ -41,7 +45,25 @@ public abstract class CsvRepository<T> {
 	 * Retrieve current csv file.
 	 * @return CSV {@link File}
 	 */
-	protected abstract File getFile();
+	public abstract File getFile();
+	
+	/**
+	 * Retrieve separator character.
+	 * @return Separator
+	 */
+	public abstract char getSeparator();
+	
+	/**
+	 * Retrieve quote character.
+	 * @return Quote
+	 */
+	public abstract char getQuote();
+	
+	/**
+	 * Retrieve escape character.
+	 * @return Escape
+	 */
+	public abstract char getEscape();
 	
 	/**
 	 * Parse a csv file and build a bean for each entry.
@@ -60,7 +82,7 @@ public abstract class CsvRepository<T> {
 		// Parse file using opencsv
 		CSVReader reader = null;
 		try {
-			reader = new CSVReader(new FileReader(getFile()));
+			reader = new CSVReader(new FileReader(getFile()), getSeparator(), getQuote(), getEscape());
 			HeaderColumnNameMappingStrategy<T> strategy = new HeaderColumnNameMappingStrategy<T>();
 			strategy.setType(type);
 			CsvToBean<T> csv = new CsvToBean<T>();
